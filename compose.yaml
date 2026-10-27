@@ -1,0 +1,48 @@
+# Band 8.0 Practice trên máy chủ dùng chung với SaleCheckIn.
+#
+# Làm đúng cách tender-intelligence đang chạy cùng máy chủ: KHÔNG dựng PostgreSQL riêng (máy chủ 4 CPU / 8 GB
+# còn chạy website và CSDL của dự án khác). Ứng dụng đứng chung mạng Docker `salecheckin_default` và nối
+# PostgreSQL của SaleCheckIn ở tên `db`, bằng database `practice` và tài khoản `practice_app` RIÊNG
+# (tạo một lần: deploy/provision-db.sql). Caddy của SaleCheckIn nhận HTTPS rồi chuyển vào bí danh `practice-app`.
+#
+#   bash deploy/docker-deploy.sh         # dựng và phát hành (quy trình đủ: docs/deploy.md)
+#   docker compose ps
+#   docker compose logs -f app
+#
+# `docker compose down` (không -v) an toàn. Không có volume nào ở đây: dữ liệu nằm trong database `practice`.
+
+name: practice-english
+
+services:
+  app:
+    build: .
+    image: practice-english:latest
+    init: true
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      # Mật khẩu chỉ gồm chữ và số (openssl rand -hex 24) để ghép vào URL không cần mã hoá ký tự.
+      DATABASE_URL: postgresql://${PG_USER:-practice_app}:${PG_PASSWORD:?Thieu PG_PASSWORD trong .env}@${PG_HOST:-db}:5432/${PG_DATABASE:-practice}
+    # Không mở cổng ra ngoài máy chủ: chỉ Caddy (cùng mạng salecheckin_default) gọi tới được.
+    expose:
+      - "3000"
+    networks:
+      default: {}
+      csdl:
+        aliases:
+          - practice-app
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:3000/api/exams/stats').then(r=>process.exit(r.ok?0:1),()=>process.exit(1))"]
+      interval: 30s
+      timeout: 5s
+      start_period: 25s
+      retries: 3
+    # Trần cứng: máy chủ còn chạy website, CSDL và báo cáo của dự án khác.
+    mem_limit: ${APP_MEM_LIMIT:-512m}
+    cpus: ${APP_CPUS:-1}
+
+networks:
+  # Mạng của SaleCheckIn, nơi PostgreSQL mang tên `db`. Phải có sẵn (SaleCheckIn đang chạy) trước khi `up`.
+  csdl:
+    name: ${PG_NETWORK:-salecheckin_default}
+    external: true

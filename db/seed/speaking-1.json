@@ -1,0 +1,112 @@
+[
+  {
+    "id": "p1-hometown",
+    "skill": "speaking",
+    "title": "Hometown",
+    "kind": "Part 1",
+    "topic": "Places",
+    "level": "Band 7",
+    "minutes": 4,
+    "body": {
+      "part": 1,
+      "questions": [
+        "Where is your hometown?",
+        "What do you like most about your hometown?",
+        "Has your hometown changed much since you were a child?",
+        "Would you like to live there in the future?"
+      ]
+    }
+  },
+  {
+    "id": "p1-food",
+    "skill": "speaking",
+    "title": "Food and cooking",
+    "kind": "Part 1",
+    "topic": "Food",
+    "level": "Band 7",
+    "minutes": 4,
+    "body": {
+      "part": 1,
+      "questions": [
+        "What kind of food do you enjoy most?",
+        "Do you like cooking? Why or why not?",
+        "Do people in your country eat out often?",
+        "Has your diet changed in recent years?"
+      ]
+    }
+  },
+  {
+    "id": "p2-teacher",
+    "skill": "speaking",
+    "title": "A teacher who influenced you",
+    "kind": "Part 2",
+    "topic": "Education",
+    "level": "Band 7",
+    "minutes": 3,
+    "body": {
+      "part": 2,
+      "questions": [
+        "Who the teacher was",
+        "What subject they taught",
+        "What they did that influenced you",
+        "and explain why this teacher made such an impression on you"
+      ],
+      "cue": "Describe a teacher who has had a big influence on you."
+    }
+  },
+  {
+    "id": "p2-place",
+    "skill": "speaking",
+    "title": "A place to relax",
+    "kind": "Part 2",
+    "topic": "Places",
+    "level": "Band 7",
+    "minutes": 3,
+    "body": {
+      "part": 2,
+      "questions": [
+        "Where it is",
+        "How often you go there",
+        "What you do there",
+        "and explain why it helps you to relax"
+      ],
+      "cue": "Describe a place where you go to relax."
+    }
+  },
+  {
+    "id": "p3-education",
+    "skill": "speaking",
+    "title": "Education and teachers",
+    "kind": "Part 3",
+    "topic": "Education",
+    "level": "Band 7",
+    "minutes": 5,
+    "body": {
+      "part": 3,
+      "questions": [
+        "What qualities make someone a good teacher?",
+        "Do you think teachers are respected enough in your country?",
+        "How might technology change the role of teachers in the future?",
+        "Should schools focus more on exam results or on practical skills? Why?"
+      ]
+    }
+  },
+  {
+    "id": "p3-leisure",
+    "skill": "speaking",
+    "title": "Relaxation and leisure",
+    "kind": "Part 3",
+    "topic": "Leisure",
+    "level": "Band 7",
+    "minutes": 5,
+    "body": {
+      "part": 3,
+      "questions": [
+        "Why do some people find it hard to relax nowadays?",
+        "Is it better to spend free time alone or with other people?",
+        "How have leisure activities changed over the last fifty years?",
+        "Should employers be responsible for their employees' work-life balance?"
+      ]
+    }
+  }
+]

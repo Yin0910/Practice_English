@@ -1,0 +1,32 @@
+{
+  "name": "practice-english",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Website luyện thi IELTS, mục tiêu Band 8.0 (Listening, Reading, Writing, Speaking, Vocabulary)",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "typecheck": "tsc --noEmit",
+    "db:import": "node scripts/import-exams.mjs",
+    "user:create": "node scripts/create-user.mjs",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "next": "^15.5.4",
+    "pg": "^8.23.1",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@types/node": "^24.5.2",
+    "@types/pg": "^8.23.1",
+    "@types/react": "^19.1.13",
+    "@types/react-dom": "^19.1.9",
+    "pg-mem": "^3.0.14",
+    "typescript": "^5.9.2",
+    "vitest": "^3.2.4"
+  }
+}

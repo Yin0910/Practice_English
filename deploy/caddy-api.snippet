@@ -1,0 +1,20 @@
+# Khối Caddy cho API của Band 8.0 Practice. DÁN vào deploy/Caddyfile của SaleCheckIn (cạnh khối report.namlinhpharma.com),
+# và COMMIT vào kho SaleCheckIn: khối dán tay trên máy chủ sẽ mất khi docker-deploy.sh chạy `git reset --hard`.
+#
+# Điều kiện: bản ghi DNS (A -> 27.71.26.215) của tên miền dưới đây phải trỏ về máy chủ TRƯỚC khi bật, nếu không
+# Caddy xin chứng chỉ thất bại liên tục. Sau khi dán:
+#   docker compose exec caddy caddy validate --config /etc/caddy/Caddyfile
+#   docker compose exec caddy caddy reload   --config /etc/caddy/Caddyfile      # reload, KHÔNG restart: các site khác không gián đoạn
+#
+# Caddy phải nối được tới `practice-app`: cả hai cùng mạng salecheckin_default (compose.yaml của dự án này đã nối sẵn).
+
+API.TEN-MIEN-CUA-BAN.com {
+	encode zstd gzip
+
+	# Chỉ là API (giao diện nằm ở Vercel); bài viết Writing tối đa vài KB.
+	request_body {
+		max_size 1MB
+	}
+
+	reverse_proxy practice-app:3000
+}

@@ -1,0 +1,92 @@
+[
+  {
+    "id": "return-of-handwriting",
+    "skill": "reading",
+    "title": "The Quiet Return of Handwriting",
+    "kind": "Passage",
+    "topic": "Education",
+    "level": "Band 7",
+    "minutes": 20,
+    "body": {
+      "paragraphs": [
+        { "label": "A", "text": "For two decades, schools in many countries have steadily shifted from pen and paper towards keyboards and tablets. Typing is faster for most adults, and digital documents are easy to edit, share and store. Yet in recent years a number of education systems have begun to reintroduce handwriting lessons, arguing that the skill is being lost faster than anyone expected." },
+        { "label": "B", "text": "Researchers who study how children learn to read have offered one explanation. Forming letters by hand, they suggest, requires the child to recall the shape of each character and to coordinate fine movements of the fingers, whereas pressing a key produces the same result every time and demands little of memory. In several small experiments, children who practised writing letters by hand were later quicker to recognise those letters than children who had only typed them. The studies involved few participants, however, and their authors caution against drawing firm conclusions." },
+        { "label": "C", "text": "Note-taking has attracted similar attention. University students who write notes longhand cannot keep up with a speaker word for word, so they are forced to summarise as they go. Typists, by contrast, tend to transcribe almost everything they hear. Some experiments found that the longhand group performed better on questions that required understanding rather than recall, although other researchers have failed to reproduce this result, and the effect appears to shrink when students are allowed to review their notes before the test." },
+        { "label": "D", "text": "Teachers also point to practical concerns. Examinations in many countries are still written by hand, and pupils who rarely practise find that their hands tire quickly and their writing becomes hard to read. At the same time, children with certain learning difficulties benefit enormously from keyboards, which remove the burden of forming letters and allow them to concentrate on ideas. Few educators therefore argue that typing should be abandoned." },
+        { "label": "E", "text": "The emerging consensus is a balanced one. Rather than choosing between pen and keyboard, schools are being encouraged to teach both, introducing handwriting in the early years when letter recognition is being established and adding typing skills as pupils grow older. What remains unclear is how much handwriting is enough, and that is a question only larger and longer studies will answer." }
+      ]
+    },
+    "questions": [
+      { "id": "q1", "type": "tfng", "text": "Typing is faster than handwriting for most adults.", "answer": "True", "explanation": "Đoạn A: \"Typing is faster for most adults\" — khớp nguyên ý." },
+      { "id": "q2", "type": "tfng", "text": "Education systems in all countries have reintroduced handwriting lessons.", "answer": "False", "explanation": "Đoạn A chỉ nói \"a number of education systems\" (một số hệ thống), không phải tất cả → mâu thuẫn." },
+      { "id": "q3", "type": "tfng", "text": "The experiments on children and letter recognition involved large numbers of participants.", "answer": "False", "explanation": "Đoạn B: \"The studies involved few participants\" — trái với \"large numbers\"." },
+      { "id": "q4", "type": "tfng", "text": "Students who typed their notes always scored lower than students who wrote by hand.", "answer": "False", "explanation": "Đoạn C: chỉ \"some experiments\" cho kết quả đó, các nhà nghiên cứu khác không lặp lại được. Từ \"always\" làm mệnh đề sai." },
+      { "id": "q5", "type": "tfng", "text": "Teachers find typed work easier to mark than handwritten work.", "answer": "Not Given", "explanation": "Bài không đề cập tới việc chấm bài. Không có thông tin để xác nhận hay bác bỏ → Not Given." },
+      { "id": "q6", "type": "mcq", "text": "According to paragraph B, what is one difference between handwriting and typing?", "options": ["Handwriting is quicker than typing", "Writing by hand places more demands on memory and fine movement", "Typing helps children to recognise letters faster", "Typing uses a wider range of muscles"], "answer": 1, "explanation": "Đoạn B: viết tay đòi hỏi nhớ hình dạng chữ và phối hợp ngón tay, còn gõ phím \"demands little of memory\" → B." },
+      { "id": "q7", "type": "mcq", "text": "In paragraph C, why might handwritten notes lead to better understanding?", "options": ["Students record every word the speaker says", "Students have to summarise because they cannot write as fast as the speaker", "Students review their notes more often", "Students use fewer words in the examination"], "answer": 1, "explanation": "Đoạn C: người viết tay \"cannot keep up with a speaker word for word, so they are forced to summarise\" → B." },
+      { "id": "q8", "type": "mcq", "text": "What is the writer's conclusion in paragraph E?", "options": ["Handwriting should replace typing in schools", "Typing should replace handwriting in schools", "Schools should teach both handwriting and typing", "No further research on the subject is needed"], "answer": 2, "explanation": "Đoạn E: \"schools are being encouraged to teach both\" → C. D sai vì đoạn cuối nói cần thêm nghiên cứu." },
+      { "id": "q9", "type": "gap", "text": "Pupils who rarely practise handwriting find that their writing becomes hard to ______ .", "answer": ["read"], "explanation": "Đoạn D: \"their writing becomes hard to read\"." },
+      { "id": "q10", "type": "gap", "text": "Handwriting is best introduced in the ______ , when letter recognition is being established.", "answer": ["early years"], "explanation": "Đoạn E: \"introducing handwriting in the early years\". Tối đa HAI từ nên không cần \"the\"." }
+    ]
+  },
+  {
+    "id": "sleep-teenage-brain",
+    "skill": "reading",
+    "title": "Sleep and the Teenage Brain",
+    "kind": "Passage",
+    "topic": "Health",
+    "level": "Band 8",
+    "minutes": 20,
+    "body": {
+      "paragraphs": [
+        { "label": "A", "text": "Parents have long complained that teenagers sleep late and struggle to wake for school. For many years this was put down to laziness or too much time spent on screens. Sleep scientists now argue that the pattern has a biological basis: during adolescence the body's internal clock shifts, so that teenagers feel sleepy later at night and wake later in the morning than they did as children." },
+        { "label": "B", "text": "The shift appears to be linked to the hormone melatonin, which signals to the body that it is time to sleep. In adolescents, melatonin is released roughly an hour or two later than in younger children or in adults. As a result, a teenager asked to fall asleep at ten o'clock may simply not feel tired, however good their intentions. Yet most schools start early, which means that many adolescents are woken at the point when their bodies still expect to be asleep." },
+        { "label": "C", "text": "The consequences of this mismatch can be considerable. Studies in several countries have associated chronic sleep shortage in teenagers with difficulty concentrating, lower examination results, and a greater risk of low mood. Drowsy teenagers are also more likely to be involved in road accidents once they begin to drive. Although some researchers caution that sleep is only one of many factors affecting school performance, the evidence has persuaded some education authorities to act." },
+        { "label": "D", "text": "A number of schools in different countries have experimented with later start times, typically by thirty to sixty minutes. Reports from these trials are generally encouraging: students sleep longer, attendance improves, and fewer pupils fall asleep in lessons. Critics, however, point to the difficulties involved. Later starts disrupt bus timetables, clash with parents' working hours and may reduce time for after-school sports. Some also worry that students will simply stay up later, cancelling out the benefit." },
+        { "label": "E", "text": "Sleep specialists therefore recommend a combination of measures. Besides later school starts where possible, they advise limiting bright screens in the hour before bed, keeping a regular bedtime, and getting daylight exposure in the morning, all of which help to set the body clock. They stress that teenagers are not being difficult; they are responding to a genuine change in biology that society has been slow to accommodate." }
+      ]
+    },
+    "questions": [
+      { "id": "q1", "type": "tfng", "text": "Scientists now believe that teenagers' late sleeping habits are mainly the result of laziness.", "answer": "False", "explanation": "Đoạn A: các nhà khoa học cho rằng hiện tượng này \"has a biological basis\", trái với laziness." },
+      { "id": "q2", "type": "tfng", "text": "Melatonin is released later in adolescents than in adults.", "answer": "True", "explanation": "Đoạn B: \"released roughly an hour or two later than in younger children or in adults\"." },
+      { "id": "q3", "type": "tfng", "text": "Teenagers need more hours of sleep than young children.", "answer": "Not Given", "explanation": "Bài nói về thời điểm buồn ngủ, không so sánh số giờ ngủ cần thiết → Not Given." },
+      { "id": "q4", "type": "tfng", "text": "Trials of later school start times have generally produced positive reports.", "answer": "True", "explanation": "Đoạn D: \"Reports from these trials are generally encouraging\"." },
+      { "id": "q5", "type": "tfng", "text": "Later start times have now been introduced in every school.", "answer": "False", "explanation": "Đoạn D: chỉ \"a number of schools\" đã thử nghiệm → mệnh đề \"every school\" sai." },
+      { "id": "q6", "type": "mcq", "text": "What does paragraph B say about melatonin?", "options": ["It makes teenagers feel tired earlier than adults", "It is released later in teenagers than in adults", "It is produced only during the morning", "It is not affected by age"], "answer": 1, "explanation": "Đoạn B: melatonin ở thanh thiếu niên được tiết \"an hour or two later\" → B." },
+      { "id": "q7", "type": "mcq", "text": "What does the writer say about sleep and school performance in paragraph C?", "options": ["Sleep is the only factor that matters", "Some researchers think sleep is just one factor among many", "The link has been proved to be false", "Sleep affects examination results but nothing else"], "answer": 1, "explanation": "Đoạn C: \"sleep is only one of many factors affecting school performance\" → B. D sai vì đoạn C còn nhắc tới tập trung và tâm trạng." },
+      { "id": "q8", "type": "mcq", "text": "Which of the following is mentioned as a criticism of later start times?", "options": ["They reduce the amount students sleep", "They make students arrive late for school", "They disrupt transport and family schedules", "They increase the number of road accidents"], "answer": 2, "explanation": "Đoạn D: \"disrupt bus timetables, clash with parents' working hours\" → C." },
+      { "id": "q9", "type": "gap", "text": "Sleep specialists advise limiting bright ______ in the hour before bed.", "answer": ["screens", "screen"], "explanation": "Đoạn E: \"limiting bright screens in the hour before bed\"." },
+      { "id": "q10", "type": "gap", "text": "Exposure to ______ in the morning helps to set the body clock.", "answer": ["daylight"], "explanation": "Đoạn E: \"getting daylight exposure in the morning\"." }
+    ]
+  },
+  {
+    "id": "free-public-transport",
+    "skill": "reading",
+    "title": "Is Free Public Transport Worth the Cost?",
+    "kind": "Passage",
+    "topic": "Economy",
+    "level": "Band 8",
+    "minutes": 20,
+    "body": {
+      "paragraphs": [
+        { "label": "A", "text": "Free public transport has an obvious appeal. Several cities, from small towns to national capitals, have abolished fares on buses and trams, hoping to cut traffic, reduce pollution and help low-income residents travel more cheaply. Supporters see it as a natural extension of public services such as libraries and parks, which are paid for through taxes and open to everyone." },
+        { "label": "B", "text": "Fare revenue, however, is not trivial. In many cities passengers' tickets cover a significant share of operating costs, and when fares are removed that money must come from somewhere else, typically local taxes. Economists therefore ask whether the policy is the most effective use of public funds. They note that wealthier residents also benefit from free travel, so a considerable part of the subsidy goes to people who could easily afford to pay." },
+        { "label": "C", "text": "The evidence on traffic is mixed. After fares were abolished in some cities, bus use rose sharply, which looks like a success. But surveys suggest that many of the new passengers were people who previously walked or cycled, not drivers who had left their cars at home. In those cases the policy increased crowding on buses without reducing congestion, and it may even have discouraged healthy forms of travel." },
+        { "label": "D", "text": "Supporters reply that fares are only one of several barriers to using buses; unreliable timetables and long journey times matter at least as much. They argue that the money saved on ticket machines, inspectors and cash handling offsets part of the lost revenue, and that free travel simplifies life for tourists and occasional users. Cities that have combined free fares with frequent services appear to have done better than those that simply removed the charge." },
+        { "label": "E", "text": "Few analysts conclude that free public transport is either a miracle or a mistake. Its success seems to depend on the quality of the service it is attached to and on what the city wants to achieve. If the main aim is to reduce car traffic, they suggest, investing in faster and more frequent routes, or charging drivers for entering the centre, may deliver more for each pound spent." }
+      ]
+    },
+    "questions": [
+      { "id": "q1", "type": "tfng", "text": "Some cities have abolished fares on public transport.", "answer": "True", "explanation": "Đoạn A: \"Several cities ... have abolished fares on buses and trams\"." },
+      { "id": "q2", "type": "tfng", "text": "Supporters compare free public transport with services such as libraries and parks.", "answer": "True", "explanation": "Đoạn A: \"a natural extension of public services such as libraries and parks\"." },
+      { "id": "q3", "type": "tfng", "text": "Wealthier residents are excluded from free public transport schemes.", "answer": "False", "explanation": "Đoạn B: \"wealthier residents also benefit from free travel\" → trái ngược." },
+      { "id": "q4", "type": "tfng", "text": "Most of the new passengers after fares were abolished had previously driven cars.", "answer": "False", "explanation": "Đoạn C: nhiều hành khách mới trước đó đi bộ hoặc đạp xe, \"not drivers who had left their cars at home\"." },
+      { "id": "q5", "type": "tfng", "text": "Passengers in cities with free public transport report higher levels of satisfaction.", "answer": "Not Given", "explanation": "Bài không nói gì về mức độ hài lòng của hành khách → Not Given." },
+      { "id": "q6", "type": "mcq", "text": "What do economists question in paragraph B?", "options": ["Whether ticket machines work reliably", "Whether free fares are the most effective use of public funds", "Whether buses are safe enough", "Whether local taxes are fair"], "answer": 1, "explanation": "Đoạn B: \"Economists therefore ask whether the policy is the most effective use of public funds\" → B." },
+      { "id": "q7", "type": "mcq", "text": "According to paragraph C, what was a problem with the rise in bus use?", "options": ["It harmed local businesses", "Many new passengers had previously walked or cycled", "Bus journeys became more expensive", "Fewer drivers used their cars"], "answer": 1, "explanation": "Đoạn C: nhiều hành khách mới vốn đi bộ hoặc đạp xe, nên kẹt xe không giảm → B. D sai vì đoạn C nói kẹt xe không giảm." },
+      { "id": "q8", "type": "mcq", "text": "What does paragraph E suggest about reducing car traffic?", "options": ["Free fares are the only solution", "Faster, more frequent routes or charging drivers may be more effective", "More roads should be built", "Cars should be banned from city centres"], "answer": 1, "explanation": "Đoạn E: \"investing in faster and more frequent routes, or charging drivers for entering the centre, may deliver more\" → B." },
+      { "id": "q9", "type": "gap", "text": "Cities that combined free fares with frequent ______ appear to have done better.", "answer": ["services"], "explanation": "Đoạn D: \"combined free fares with frequent services\"." },
+      { "id": "q10", "type": "gap", "text": "Supporters say that savings on ticket machines, inspectors and ______ handling offset part of the lost revenue.", "answer": ["cash"], "explanation": "Đoạn D: \"ticket machines, inspectors and cash handling\"." }
+    ]
+  }
+]

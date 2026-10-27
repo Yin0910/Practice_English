@@ -1,0 +1,70 @@
+[
+  {
+    "id": "bike-tour-briefing",
+    "skill": "listening",
+    "title": "City bike tour briefing",
+    "kind": "Monologue",
+    "topic": "Travel",
+    "level": "Band 6",
+    "minutes": 8,
+    "body": {
+      "script": "Welcome, everyone, to Harbour Bike Tours. I'm Marcus, and I'll be your guide this afternoon. The tour lasts about three hours and covers roughly twenty kilometres, so it's a fairly gentle ride, but there are a couple of hills near the old fort. We set off from the front of the ferry terminal at two o'clock sharp. Actually, I should say two fifteen today, because the bikes were delivered late. Please be at the meeting point ten minutes before that. You'll each be given a helmet, and these are compulsory, I'm afraid. You'll also find a small repair kit under every seat. If anything goes wrong with your bike, don't try to fix it yourself. Just call me on the number printed on your map. Our first stop will be the fish market, where you'll have fifteen minutes to buy a snack. Then we ride along the river to the botanical gardens, which is the best place for photographs. We'll stop for a proper break at a cafe beside the lake at around four o'clock, and the tour finishes back at the ferry terminal at about five thirty. The price includes the bike hire, the helmet and one drink at the cafe, but not the entrance fee for the gardens, which is six pounds fifty. If you'd like to pay by card rather than cash, please do that before we leave, because there are no machines on the route. Finally, if it rains, the tour will still go ahead unless the wind is very strong, in which case we'll rearrange it for the following day."
+    },
+    "questions": [
+      { "id": "q1", "type": "gap", "text": "The tour covers about ______ kilometres.", "answer": ["20", "twenty"], "explanation": "\"covers roughly twenty kilometres\"." },
+      { "id": "q2", "type": "mcq", "text": "What time will the tour start today?", "options": ["2.00 p.m.", "2.15 p.m.", "2.30 p.m."], "answer": 1, "explanation": "Người nói tự sửa: \"two o'clock sharp. Actually, I should say two fifteen today\". Đáp án cuối cùng mới tính." },
+      { "id": "q3", "type": "gap", "text": "Visitors should be at the meeting point ______ minutes before the start.", "answer": ["10", "ten"], "explanation": "\"Please be at the meeting point ten minutes before that\"." },
+      { "id": "q4", "type": "mcq", "text": "Where is the repair kit?", "options": ["In a bag on the handlebars", "Under every seat", "In the guide's van"], "answer": 1, "explanation": "\"a small repair kit under every seat\"." },
+      { "id": "q5", "type": "gap", "text": "At the fish market visitors have ______ minutes to buy a snack.", "answer": ["15", "fifteen"], "explanation": "\"you'll have fifteen minutes to buy a snack\"." },
+      { "id": "q6", "type": "mcq", "text": "Which stop is the best place for photographs?", "options": ["The old fort", "The botanical gardens", "The lake"], "answer": 1, "explanation": "\"the botanical gardens, which is the best place for photographs\". Hồ chỉ là nơi nghỉ giải lao." },
+      { "id": "q7", "type": "gap", "text": "The entrance fee for the gardens is £ ______ .", "answer": ["6.50", "6.5", "£6.50", "£6.5", "6.50 pounds"], "explanation": "\"six pounds fifty\" = £6.50." },
+      { "id": "q8", "type": "mcq", "text": "What will happen if it rains?", "options": ["The tour will be cancelled", "The tour will go ahead unless the wind is very strong", "The tour will always move to the next day"], "answer": 1, "explanation": "\"the tour will still go ahead unless the wind is very strong\"." }
+    ]
+  },
+  {
+    "id": "urban-green-spaces-lecture",
+    "skill": "listening",
+    "title": "Lecture: green space in cities",
+    "kind": "Lecture",
+    "topic": "Environment",
+    "level": "Band 8",
+    "minutes": 10,
+    "body": {
+      "script": "Today I'd like to look at the role of green space in cities, and in particular at three benefits that planners often cite. The first is temperature. On a hot day, a city centre can be several degrees warmer than the surrounding countryside, because buildings and roads absorb heat. Trees help by providing shade, but also, and this is less obvious, by releasing water vapour, which cools the air around them. In one study, areas with at least thirty per cent tree cover were consistently cooler than those with less than ten. The second benefit is mental health. Several surveys have found that residents who live within five hundred metres of a park report lower levels of stress. Interestingly, the size of the park matters less than you might expect. What seems to count is that people can reach it easily and feel safe there. The third benefit is biodiversity. Even small green areas, such as roadside verges or roof gardens, can support insects and birds, provided they are planted with native species. Now, you might assume that more green space is always better, but there are trade-offs. Land in city centres is extremely expensive, and every hectare turned into a park is a hectare that cannot be used for housing. Some planners have therefore turned to what they call green corridors, narrow strips of planting that link existing parks. These cost less, but critics argue that they are too narrow to offer real benefits to wildlife. For your assignment, I'd like you to choose one European city and evaluate its green space policy against these three benefits. You should aim for around two thousand words, and the deadline is the twelfth of March."
+    },
+    "questions": [
+      { "id": "q1", "type": "mcq", "text": "Besides providing shade, how do trees cool the air?", "options": ["By reflecting sunlight", "By releasing water vapour", "By absorbing traffic noise"], "answer": 1, "explanation": "\"and also, and this is less obvious, by releasing water vapour, which cools the air\"." },
+      { "id": "q2", "type": "gap", "text": "Areas with at least ______ per cent tree cover were consistently cooler.", "answer": ["30", "thirty"], "explanation": "\"at least thirty per cent tree cover\". Con số 10 là mức tối đa của khu vực nóng hơn." },
+      { "id": "q3", "type": "gap", "text": "Residents within ______ metres of a park report lower stress.", "answer": ["500", "five hundred"], "explanation": "\"within five hundred metres of a park\"." },
+      { "id": "q4", "type": "mcq", "text": "What does the lecturer say about the size of parks?", "options": ["Larger parks are always better for health", "Size matters less than easy access and a feeling of safety", "Only small parks reduce stress"], "answer": 1, "explanation": "\"the size of the park matters less than you might expect. What seems to count is that people can reach it easily and feel safe\"." },
+      { "id": "q5", "type": "gap", "text": "Small green areas support insects and birds if they are planted with ______ species.", "answer": ["native"], "explanation": "\"provided they are planted with native species\"." },
+      { "id": "q6", "type": "mcq", "text": "What is the main disadvantage of parks in city centres?", "options": ["They attract crime", "The land is expensive and cannot be used for housing", "They need too much water"], "answer": 1, "explanation": "\"Land in city centres is extremely expensive, and every hectare turned into a park ... cannot be used for housing\"." },
+      { "id": "q7", "type": "mcq", "text": "What do critics say about green corridors?", "options": ["They are too expensive", "They are too narrow to help wildlife", "They are too hard to maintain"], "answer": 1, "explanation": "\"critics argue that they are too narrow to offer real benefits to wildlife\". Hành lang xanh rẻ hơn (\"cost less\") nên A sai." },
+      { "id": "q8", "type": "gap", "text": "The assignment should be around ______ words.", "answer": ["2000", "2,000", "two thousand", "2 000"], "explanation": "\"around two thousand words\"." },
+      { "id": "q9", "type": "gap", "text": "The assignment deadline is the ______ of March.", "answer": ["12th", "12", "twelfth", "the 12th", "twelve"], "explanation": "\"the deadline is the twelfth of March\"." }
+    ]
+  },
+  {
+    "id": "language-school-voicemail",
+    "skill": "listening",
+    "title": "Voicemail from a language school",
+    "kind": "Voicemail",
+    "topic": "Education",
+    "level": "Band 6",
+    "minutes": 8,
+    "body": {
+      "script": "Hello, this is a message for Ms Rivera from Brightwater Language School. My name is Daniel Okafor, and I'm calling about your enrolment on the evening English course. Unfortunately, the class that you chose for Tuesdays has been cancelled because we didn't have enough students. I can offer you a place in the Thursday class instead, which runs from six thirty to eight thirty, starting on the ninth of October. The course lasts ten weeks and the fee is four hundred and eighty pounds, payable by the end of this month. If you're not able to attend on Thursdays, we do have a Saturday morning class beginning at nine fifteen, but that one is slightly more expensive, at five hundred and twenty pounds. You'll need to bring your passport on the first day so we can make a copy for our records, and a notebook, as we don't provide those. Please call me back before Friday on the number you were given when you enrolled. Thank you, and I hope to see you soon."
+    },
+    "questions": [
+      { "id": "q1", "type": "gap", "text": "The caller's name is Daniel ______ .", "answer": ["Okafor"], "explanation": "\"My name is Daniel Okafor\"." },
+      { "id": "q2", "type": "mcq", "text": "Why was the Tuesday class cancelled?", "options": ["The teacher is ill", "There were not enough students", "The room is not available"], "answer": 1, "explanation": "\"cancelled because we didn't have enough students\"." },
+      { "id": "q3", "type": "gap", "text": "The Thursday class runs from 6.30 p.m. to ______ p.m.", "answer": ["8.30", "8:30", "8.30 pm", "8:30 pm", "8.30pm", "8:30pm", "eight thirty", "half past eight", "20:30"], "explanation": "\"runs from six thirty to eight thirty\"." },
+      { "id": "q4", "type": "gap", "text": "The Thursday class starts on ______ October.", "answer": ["9", "9th", "ninth", "the 9th"], "explanation": "\"starting on the ninth of October\"." },
+      { "id": "q5", "type": "gap", "text": "The course lasts ______ weeks.", "answer": ["10", "ten"], "explanation": "\"The course lasts ten weeks\"." },
+      { "id": "q6", "type": "gap", "text": "The fee for the Thursday class is £ ______ .", "answer": ["480", "£480", "four hundred and eighty"], "explanation": "\"four hundred and eighty pounds\"." },
+      { "id": "q7", "type": "mcq", "text": "How much does the Saturday class cost?", "options": ["£420", "£480", "£520"], "answer": 2, "explanation": "\"five hundred and twenty pounds\". £480 là học phí lớp Thứ Năm." },
+      { "id": "q8", "type": "mcq", "text": "Besides a notebook, what must Ms Rivera bring on the first day?", "options": ["A photograph", "Her passport", "A deposit"], "answer": 1, "explanation": "\"bring your passport on the first day so we can make a copy\"." },
+      { "id": "q9", "type": "gap", "text": "Ms Rivera should call back before ______ .", "answer": ["Friday"], "explanation": "\"Please call me back before Friday\"." }
+    ]
+  }
+]

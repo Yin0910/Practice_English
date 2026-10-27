@@ -1,0 +1,113 @@
+[
+  {
+    "id": "library-orientation",
+    "skill": "listening",
+    "title": "Library orientation talk",
+    "kind": "Monologue",
+    "topic": "Education",
+    "level": "Band 6",
+    "minutes": 8,
+    "body": {
+      "script": "Good morning, everyone, and welcome to Riverside University Library. My name is Helen Carter, and I'm the student services manager. I'd like to give you a quick overview of what we offer. The library is open from eight in the morning until ten at night on weekdays. On Saturdays we close earlier, at six in the evening, and on Sundays we open only from noon to five. During the exam period in December, the library stays open twenty-four hours a day. You can borrow up to twelve books at a time, for a period of three weeks. If you need a book for longer, you can renew it online, but only twice. Late returns cost fifty pence per day. The quiet study zone is on the second floor, and the group study rooms are on the third floor. These rooms must be booked in advance through the library website, and each booking lasts for a maximum of two hours. Computers are available on the ground floor next to the help desk, and printing costs five pence per page for black and white. If you lose your student card, please report it at the help desk immediately, because you will need it to enter the building after six p.m. Finally, the library offers free workshops on referencing and research skills every Wednesday afternoon. Places are limited, so please sign up at the help desk."
+    },
+    "questions": [
+      {
+        "id": "l1",
+        "type": "gap",
+        "text": "On weekdays the library closes at ______ p.m.",
+        "explanation": "\"from eight in the morning until ten at night on weekdays\".",
+        "answer": [
+          "10",
+          "ten",
+          "10.00",
+          "10:00",
+          "22:00"
+        ]
+      },
+      {
+        "id": "l2",
+        "type": "mcq",
+        "text": "What time does the library close on Saturdays?",
+        "explanation": "\"On Saturdays we close earlier, at six in the evening\". Số 5 (p.m.) là bẫy từ Sunday: \"noon to five\".",
+        "options": [
+          "5 p.m.",
+          "6 p.m.",
+          "10 p.m."
+        ],
+        "answer": 1
+      },
+      {
+        "id": "l3",
+        "type": "gap",
+        "text": "On Sundays the library opens at ______ .",
+        "explanation": "\"on Sundays we open only from noon to five\".",
+        "answer": [
+          "noon",
+          "12",
+          "12 noon",
+          "12pm",
+          "12 pm",
+          "midday",
+          "12.00",
+          "12:00"
+        ]
+      },
+      {
+        "id": "l4",
+        "type": "gap",
+        "text": "Students can borrow up to ______ books at a time.",
+        "explanation": "\"up to twelve books at a time\".",
+        "answer": [
+          "12",
+          "twelve"
+        ]
+      },
+      {
+        "id": "l5",
+        "type": "mcq",
+        "text": "How much is the charge for a late return?",
+        "explanation": "\"Late returns cost fifty pence per day\". 5p là phí in ấn — bẫy nghe nhầm số.",
+        "options": [
+          "5p per day",
+          "50p per day",
+          "£5 per day"
+        ],
+        "answer": 1
+      },
+      {
+        "id": "l6",
+        "type": "mcq",
+        "text": "On which floor are the group study rooms?",
+        "explanation": "\"the quiet study zone is on the second floor, and the group study rooms are on the third floor\". Người nói nhắc cả hai tầng — phải nghe đúng gắn với phòng nào.",
+        "options": [
+          "Ground floor",
+          "Second floor",
+          "Third floor"
+        ],
+        "answer": 2
+      },
+      {
+        "id": "l7",
+        "type": "gap",
+        "text": "A group room can be booked for a maximum of ______ hours.",
+        "explanation": "\"each booking lasts for a maximum of two hours\".",
+        "answer": [
+          "2",
+          "two"
+        ]
+      },
+      {
+        "id": "l8",
+        "type": "mcq",
+        "text": "On which day are the free workshops held?",
+        "explanation": "\"every Wednesday afternoon\".",
+        "options": [
+          "Monday",
+          "Wednesday",
+          "Friday"
+        ],
+        "answer": 1
+      }
+    ]
+  }
+]

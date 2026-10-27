@@ -1,0 +1,130 @@
+[
+  {
+    "id": "vertical-farming",
+    "skill": "reading",
+    "title": "The Case for Vertical Farming",
+    "kind": "Passage",
+    "topic": "Environment",
+    "level": "Band 7",
+    "minutes": 20,
+    "body": {
+      "paragraphs": [
+        {
+          "label": "A",
+          "text": "As the world's population moves towards cities, the pressure on conventional agriculture is growing. Farmland is being lost to housing and roads, while the demand for fresh food keeps rising. Vertical farming, which means growing crops in stacked layers inside controlled indoor environments, has been proposed as one answer, and in the past decade it has moved from laboratory experiment to commercial reality."
+        },
+        {
+          "label": "B",
+          "text": "The basic technique is straightforward. Plants are grown without soil, their roots suspended in nutrient-rich water or misted with a nutrient solution, while LED lights replace sunlight. Because temperature, humidity and light are controlled precisely, crops can be harvested all year round, and growers report that a leafy vegetable can reach maturity in roughly half the time it needs outdoors. Closed-loop irrigation recycles water, so these farms typically use far less water than field agriculture; some operators claim savings of more than ninety per cent."
+        },
+        {
+          "label": "C",
+          "text": "Supporters also stress the benefits of location. A farm built inside a disused warehouse in the middle of a city can deliver produce to shops within hours, cutting the transport emissions and the spoilage associated with long supply chains. Since the plants never encounter pests from outside, there is little need for pesticides."
+        },
+        {
+          "label": "D",
+          "text": "Critics, however, point to the cost of energy. Lighting and climate control demand large amounts of electricity, and unless that electricity comes from renewable sources, the environmental advantage may be smaller than advertised. Start-up costs are also high, and several well-publicised companies have closed after failing to cover their bills. Moreover, the technology is currently best suited to leafy greens and herbs; staple crops such as wheat and rice, which supply most of the world's calories, remain impractical to grow indoors at a competitive price."
+        },
+        {
+          "label": "E",
+          "text": "Most analysts therefore see vertical farming not as a replacement for traditional agriculture but as a supplement to it. Its greatest potential may lie in regions with harsh climates or scarce arable land, where fresh produce is otherwise expensive to import. As LED technology improves and renewable electricity becomes cheaper, the economics are expected to improve, but few experts predict that skyscraper farms will feed the world in the near future."
+        }
+      ]
+    },
+    "questions": [
+      {
+        "id": "q1",
+        "type": "tfng",
+        "text": "Vertical farming has been tested in laboratories but is not yet sold commercially.",
+        "explanation": "Đoạn A: \"has moved from laboratory experiment to commercial reality\" — đã thương mại hoá, nên mệnh đề là False.",
+        "answer": "False"
+      },
+      {
+        "id": "q2",
+        "type": "tfng",
+        "text": "Leafy vegetables can mature faster in vertical farms than they do outdoors.",
+        "explanation": "Đoạn B: \"reach maturity in roughly half the time it needs outdoors\" — paraphrase của \"mature faster\".",
+        "answer": "True"
+      },
+      {
+        "id": "q3",
+        "type": "tfng",
+        "text": "Most workers in vertical farms need a specialist university degree.",
+        "explanation": "Bài không nói gì về trình độ của nhân viên. Không có thông tin để xác nhận hay bác bỏ → Not Given.",
+        "answer": "Not Given"
+      },
+      {
+        "id": "q4",
+        "type": "tfng",
+        "text": "Some vertical farming companies have gone out of business.",
+        "explanation": "Đoạn D: \"several well-publicised companies have closed\" → True.",
+        "answer": "True"
+      },
+      {
+        "id": "q5",
+        "type": "tfng",
+        "text": "Wheat and rice can already be grown indoors at competitive prices.",
+        "explanation": "Đoạn D: staple crops như wheat và rice \"remain impractical to grow indoors at a competitive price\" → mâu thuẫn → False.",
+        "answer": "False"
+      },
+      {
+        "id": "q6",
+        "type": "mcq",
+        "text": "According to paragraph B, what is the purpose of closed-loop irrigation?",
+        "explanation": "Đoạn B: \"recycles water, so these farms use far less water\" → B. Các đáp án khác nhắc tới yếu tố có trong bài (LED, humidity) nhưng không phải mục đích của closed-loop irrigation.",
+        "options": [
+          "To make plants grow faster",
+          "To recycle water and reduce consumption",
+          "To replace the need for LED lights",
+          "To control the humidity of the room"
+        ],
+        "answer": 1
+      },
+      {
+        "id": "q7",
+        "type": "mcq",
+        "text": "What does the writer say about the environmental advantage of vertical farming?",
+        "explanation": "Đoạn D: \"unless that electricity comes from renewable sources, the environmental advantage may be smaller than advertised\" → B.",
+        "options": [
+          "It is guaranteed in all cases",
+          "It depends on where the electricity comes from",
+          "It results mainly from employing fewer workers",
+          "It is cancelled out by transport emissions"
+        ],
+        "answer": 1
+      },
+      {
+        "id": "q8",
+        "type": "mcq",
+        "text": "What is the writer's overall view in paragraph E?",
+        "explanation": "\"not as a replacement … but as a supplement\" = complement → C.",
+        "options": [
+          "Vertical farming will soon replace traditional agriculture.",
+          "Vertical farming is an idea that has failed.",
+          "Vertical farming is likely to complement conventional farming.",
+          "Vertical farming should be limited to staple crops."
+        ],
+        "answer": 2
+      },
+      {
+        "id": "q9",
+        "type": "gap",
+        "text": "Because plants in vertical farms never meet pests from outside, there is little need for ______ .",
+        "explanation": "Đoạn C: \"there is little need for pesticides\". Giới hạn NO MORE THAN TWO WORDS — chỉ cần 1 từ.",
+        "answer": [
+          "pesticides",
+          "pesticide"
+        ]
+      },
+      {
+        "id": "q10",
+        "type": "gap",
+        "text": "Vertical farming may be most useful in regions with harsh climates or a shortage of ______ land.",
+        "explanation": "Đoạn E: \"scarce arable land\" — \"shortage of\" là paraphrase của \"scarce\".",
+        "answer": [
+          "arable"
+        ]
+      }
+    ]
+  }
+]
