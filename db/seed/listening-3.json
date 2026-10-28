@@ -1,0 +1,94 @@
+[
+  {
+    "id": "gym-membership-induction",
+    "skill": "listening",
+    "title": "Gym membership induction talk",
+    "kind": "Monologue",
+    "topic": "Health",
+    "level": "Band 6",
+    "minutes": 8,
+    "body": {
+      "script": "Welcome to Riverside Fitness Centre, and congratulations on joining us. My name is Priya, and I'm one of the membership team, so if you have any questions after today, just come and find me at the front desk. Let me start with opening hours. We're open from six in the morning until eleven at night on weekdays, but on Saturdays we close a little earlier, at eight in the evening, and on Sundays we're only open from nine until six. Your card gives you access to the main gym floor and the free weights area straight away. The swimming pool is included too, but only after ten in the morning on weekdays, because we run school lessons before that. We also offer group classes, and these need to be booked in advance through our app, up to forty-eight hours ahead. Each class is limited to twenty participants, and the most popular one, Saturday morning spinning, usually fills up within a few hours of bookings opening. If you'd like a personal trainer, your membership includes one free session when you join, and after that sessions cost twenty-five pounds each, or you can buy a block of ten for two hundred pounds, which works out cheaper. Lockers are available on the ground floor, and you'll need a one-pound coin, which is returned when you take your things out, so there's no need to bring your own padlock. Finally, parking. We have a small car park at the back, but it's free only for the first two hours; after that, it's two pounds for every additional hour, so most members prefer to use the public car park across the road, which is cheaper for longer visits. If you ever want to freeze your membership, for example if you're travelling, you can do that for up to three months a year through the app, free of charge. Any longer than that, and there's a small admin fee of ten pounds."
+    },
+    "questions": [
+      { "id": "q1", "type": "gap", "text": "On weekdays the centre is open until ______ at night.", "answer": ["11", "eleven", "11pm", "11 pm", "11:00", "23:00"], "explanation": "\"open from six in the morning until eleven at night on weekdays\"." },
+      { "id": "q2", "type": "mcq", "text": "What time does the centre close on Saturdays?", "options": ["6 p.m.", "8 p.m.", "9 p.m."], "answer": 1, "explanation": "\"on Saturdays we close a little earlier, at eight in the evening\"." },
+      { "id": "q3", "type": "gap", "text": "On Sundays the centre opens at ______ .", "answer": ["9", "nine", "9am", "9 am"], "explanation": "\"on Sundays we're only open from nine until six\"." },
+      { "id": "q4", "type": "mcq", "text": "When can members use the swimming pool on weekdays?", "options": ["Any time during opening hours", "Only after 10 a.m.", "Only before 10 a.m."], "answer": 1, "explanation": "\"included too, but only after ten in the morning on weekdays, because we run school lessons before that\"." },
+      { "id": "q5", "type": "gap", "text": "Group classes must be booked up to ______ hours in advance.", "answer": ["48", "forty-eight"], "explanation": "\"booked in advance through our app, up to forty-eight hours ahead\"." },
+      { "id": "q6", "type": "mcq", "text": "How many free personal training sessions does a new membership include?", "options": ["None", "One", "Ten"], "answer": 1, "explanation": "\"your membership includes one free session when you join\"." },
+      { "id": "q7", "type": "gap", "text": "A block of ten personal training sessions costs £______ .", "answer": ["200", "£200", "two hundred"], "explanation": "\"a block of ten for two hundred pounds\"." },
+      { "id": "q8", "type": "mcq", "text": "What do members need to use a locker?", "options": ["Their own padlock", "A one-pound coin", "A membership card"], "answer": 1, "explanation": "\"you'll need a one-pound coin, which is returned... so there's no need to bring your own padlock\"." },
+      { "id": "q9", "type": "gap", "text": "Members can freeze their membership free of charge for up to ______ months a year.", "answer": ["3", "three"], "explanation": "\"freeze your membership... for up to three months a year through the app, free of charge\"." }
+    ]
+  },
+  {
+    "id": "student-accommodation-call",
+    "skill": "listening",
+    "title": "Student accommodation office call",
+    "kind": "Monologue",
+    "topic": "Education",
+    "level": "Band 7",
+    "minutes": 8,
+    "body": {
+      "script": "Good afternoon, and thanks for calling the Student Accommodation Office. I'm Marcus, and I look after bookings for Elm Court and Birchwood Halls. Let me give you the key details for this year. Elm Court offers single rooms with a shared kitchen and bathroom, and the rent is one hundred and forty pounds a week, including all bills. Birchwood is slightly more expensive, at one hundred and sixty-five pounds a week, but every room there has its own private bathroom. Contracts run for forty-two weeks, starting in September, and you're required to pay a deposit of two hundred and fifty pounds before you move in. This is fully refundable at the end of the year, provided there's no damage to the room. Applications open on the first of June and close on the fifteenth of July. After that date, we can only offer you a room if space remains, and in a typical year, Birchwood fills up completely before the deadline, while Elm Court usually still has a few rooms left. Once you've applied, you'll need to pay a non-refundable administration fee of fifty pounds to confirm your place; this is separate from the deposit. Both buildings have a quiet study room on the ground floor, open twenty-four hours, and a shared laundry room, where each wash costs two pounds fifty. If you need to leave before your contract ends, for example to study abroad for a semester, you must give us at least eight weeks' written notice, otherwise you remain responsible for the rent until a replacement tenant is found. Finally, both halls are smoke-free buildings, and pets are not permitted under any circumstances, though guide dogs are of course welcome."
+    },
+    "questions": [
+      { "id": "q1", "type": "gap", "text": "A single room in Elm Court costs £______ a week.", "answer": ["140", "£140"], "explanation": "\"the rent is one hundred and forty pounds a week\"." },
+      { "id": "q2", "type": "mcq", "text": "What is different about rooms in Birchwood Halls?", "options": ["They include all bills", "They have a private bathroom", "They are cheaper than Elm Court"], "answer": 1, "explanation": "\"every room there has its own private bathroom\"." },
+      { "id": "q3", "type": "gap", "text": "Contracts run for ______ weeks, starting in September.", "answer": ["42", "forty-two"], "explanation": "\"Contracts run for forty-two weeks, starting in September\"." },
+      { "id": "q4", "type": "gap", "text": "The deposit required before moving in is £______ .", "answer": ["250", "£250"], "explanation": "\"pay a deposit of two hundred and fifty pounds before you move in\"." },
+      { "id": "q5", "type": "mcq", "text": "Which hall usually fills up completely before the application deadline?", "options": ["Elm Court", "Birchwood", "Both halls equally"], "answer": 1, "explanation": "\"Birchwood fills up completely before the deadline, while Elm Court usually still has a few rooms left\"." },
+      { "id": "q6", "type": "gap", "text": "Applicants must pay a non-refundable administration fee of £______ .", "answer": ["50", "£50"], "explanation": "\"a non-refundable administration fee of fifty pounds\"." },
+      { "id": "q7", "type": "mcq", "text": "How long is the study room on the ground floor open?", "options": ["From 9 a.m. to 9 p.m.", "24 hours", "Only during exam periods"], "answer": 1, "explanation": "\"a quiet study room on the ground floor, open twenty-four hours\"." },
+      { "id": "q8", "type": "gap", "text": "Students who leave early must give at least ______ weeks' written notice.", "answer": ["8", "eight"], "explanation": "\"you must give us at least eight weeks' written notice\"." },
+      { "id": "q9", "type": "mcq", "text": "What is NOT allowed in either hall?", "options": ["Guide dogs", "Pets", "Laundry after 10 p.m."], "answer": 1, "explanation": "\"pets are not permitted under any circumstances, though guide dogs are of course welcome\"." }
+    ]
+  },
+  {
+    "id": "decision-fatigue-lecture",
+    "skill": "listening",
+    "title": "Lecture: decision fatigue",
+    "kind": "Lecture",
+    "topic": "Science",
+    "level": "Band 8",
+    "minutes": 10,
+    "body": {
+      "script": "Today I want to talk about a phenomenon psychologists call decision fatigue, which is the idea that the quality of our decisions gets worse the more decisions we've already made that day. The effect was first documented clearly in a study of parole board judges. Researchers found that prisoners who appeared early in the morning, right after the judges had eaten breakfast, received a favourable parole decision around sixty-five per cent of the time. By late morning, just before lunch, that figure had dropped to nearly zero. After lunch, the approval rate jumped back up to around sixty per cent, before falling steadily again throughout the afternoon. Now, the judges weren't becoming less fair on purpose. The theory is that making a careful, considered decision requires mental energy, rather like a muscle that gets tired with use, and when that energy runs low, people tend to fall back on the easier, lower-effort option. In the case of parole, maintaining the prisoner's current situation, in other words saying no, requires less mental effort than carefully weighing up a release. This matters well beyond the courtroom. Retailers have known for decades that placing sweets and magazines near the checkout works partly because, by that point, a shopper has already made dozens of small decisions and has little willpower left to resist. So what can be done about it? Researchers suggest three main strategies. First, schedule your most important decisions for earlier in the day, when your mental resources are freshest. Second, reduce the total number of small decisions you face, which is why some highly successful people famously wear the same outfit every day. And third, and perhaps most practically, take short breaks and have a small snack before any decision that really matters, since blood sugar levels appear to play a measurable role in willpower. For next week's seminar, I'd like you to find one other real-world example of decision fatigue and be ready to discuss whether the three strategies I've mentioned would actually help in that situation."
+    },
+    "questions": [
+      { "id": "q1", "type": "gap", "text": "Decision fatigue is the idea that decision quality gets worse the more ______ a person has already made that day.", "answer": ["decisions"], "explanation": "\"the quality of our decisions gets worse the more decisions we've already made that day\"." },
+      { "id": "q2", "type": "mcq", "text": "In the parole study, when were prisoners most likely to receive a favourable decision?", "options": ["Late morning, just before lunch", "Early morning, right after breakfast", "Late afternoon"], "answer": 1, "explanation": "\"prisoners who appeared early in the morning, right after the judges had eaten breakfast, received a favourable parole decision around sixty-five per cent of the time\"." },
+      { "id": "q3", "type": "gap", "text": "By late morning, the approval rate had dropped to nearly ______ .", "answer": ["zero", "0"], "explanation": "\"By late morning, just before lunch, that figure had dropped to nearly zero\"." },
+      { "id": "q4", "type": "mcq", "text": "What happens to the approval rate immediately after lunch?", "options": ["It continues to fall", "It jumps back up to around 60%", "It stays the same as before lunch"], "answer": 1, "explanation": "\"After lunch, the approval rate jumped back up to around sixty per cent\"." },
+      { "id": "q5", "type": "gap", "text": "Mental energy for decisions is compared to a ______ that gets tired with use.", "answer": ["muscle"], "explanation": "\"rather like a muscle that gets tired with use\"." },
+      { "id": "q6", "type": "mcq", "text": "Why do retailers place sweets near the checkout, according to the lecturer?", "options": ["Because sweets are cheaper there", "Because shoppers have little willpower left by that point", "Because it is required by law"], "answer": 1, "explanation": "\"a shopper has already made dozens of small decisions and has little willpower left to resist\"." },
+      { "id": "q7", "type": "gap", "text": "The lecturer suggests scheduling important decisions for ______ in the day.", "answer": ["earlier"], "explanation": "\"schedule your most important decisions for earlier in the day, when your mental resources are freshest\"." },
+      { "id": "q8", "type": "mcq", "text": "What is the second strategy mentioned to reduce decision fatigue?", "options": ["Eating more sugar", "Reducing the total number of small decisions faced", "Sleeping more at night"], "answer": 1, "explanation": "\"reduce the total number of small decisions you face, which is why some... people... wear the same outfit every day\"." },
+      { "id": "q9", "type": "gap", "text": "The third strategy involves taking short breaks and having a small ______ before an important decision.", "answer": ["snack"], "explanation": "\"take short breaks and have a small snack before any decision that really matters\"." }
+    ]
+  },
+  {
+    "id": "faulty-blender-return-call",
+    "skill": "listening",
+    "title": "Customer service call: faulty product return",
+    "kind": "Monologue",
+    "topic": "Economy",
+    "level": "Band 6",
+    "minutes": 8,
+    "body": {
+      "script": "Good morning, Customer Service, this is Hannah speaking, how can I help? I'm sorry to hear that. Could I take your order number first? Thank you. I can see the order here, it was placed on the fourteenth of September, so you're well within our ninety-day return window. There are two options available to you. We can send a full refund back to the original payment card, which usually takes three to five working days to appear, or we can send a replacement model, which would arrive within two working days since we have that item in stock. Which would you prefer? A replacement, that's fine. I'll need you to send the faulty item back to us first, using the prepaid label I'm about to email to you, and once our warehouse confirms it's arrived, we'll dispatch the new one straight away, so please allow up to five working days in total from today. I should also mention that the blender comes with a two-year manufacturer's warranty, so if anything goes wrong again after this replacement, you won't need to pay for a repair, provided you keep a copy of your receipt. Is there anything else I can help you with today? No problem. You'll receive a confirmation email within the next thirty minutes, and if the prepaid label doesn't arrive by tomorrow morning, please call us back on this same number."
+    },
+    "questions": [
+      { "id": "q1", "type": "gap", "text": "The customer is calling about a faulty ______ .", "answer": ["blender"], "explanation": "\"I'm calling about a blender I bought from your website\"." },
+      { "id": "q2", "type": "mcq", "text": "How long is the company's return window?", "options": ["30 days", "60 days", "90 days"], "answer": 2, "explanation": "\"you're well within our ninety-day return window\"." },
+      { "id": "q3", "type": "gap", "text": "A refund usually takes ______ to five working days to appear.", "answer": ["three", "3"], "explanation": "\"usually takes three to five working days to appear\"." },
+      { "id": "q4", "type": "mcq", "text": "How long will a replacement take to arrive, since the item is in stock?", "options": ["Two working days", "Five working days", "Ten working days"], "answer": 0, "explanation": "\"arrive within two working days since we have that item in stock\"." },
+      { "id": "q5", "type": "gap", "text": "The customer must send the faulty item back using a ______ label.", "answer": ["prepaid"], "explanation": "\"using the prepaid label I'm about to email to you\"." },
+      { "id": "q6", "type": "mcq", "text": "In total, how long should the customer allow for the replacement process?", "options": ["Up to 2 working days", "Up to 5 working days", "Up to 10 working days"], "answer": 1, "explanation": "\"please allow up to five working days in total from today\"." },
+      { "id": "q7", "type": "gap", "text": "The blender comes with a ______-year manufacturer's warranty.", "answer": ["two", "2"], "explanation": "\"the blender comes with a two-year manufacturer's warranty\"." },
+      { "id": "q8", "type": "mcq", "text": "What does the customer need to keep in order to use the warranty later?", "options": ["The original box", "A copy of the receipt", "The prepaid label"], "answer": 1, "explanation": "\"provided you keep a copy of your receipt\"." },
+      { "id": "q9", "type": "gap", "text": "The customer will receive a confirmation email within the next ______ minutes.", "answer": ["30", "thirty"], "explanation": "\"You'll receive a confirmation email within the next thirty minutes\"." }
+    ]
+  }
+]

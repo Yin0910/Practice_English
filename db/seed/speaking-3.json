@@ -1,0 +1,14 @@
+[
+  { "id": "p1-shopping", "skill": "speaking", "title": "Shopping", "kind": "Part 1", "topic": "Economy", "level": "Band 7", "minutes": 4,
+    "body": { "part": 1, "questions": ["Do you enjoy shopping?", "Do you prefer shopping online or in physical shops?", "Who usually does the shopping in your household?", "Has the way you shop changed in recent years?"] } },
+  { "id": "p1-public-holidays", "skill": "speaking", "title": "Public holidays", "kind": "Part 1", "topic": "Society", "level": "Band 7", "minutes": 4,
+    "body": { "part": 1, "questions": ["What is your favourite public holiday?", "How do people in your country usually celebrate it?", "Do you prefer to travel or stay at home during holidays?", "Are there enough public holidays in your country?"] } },
+  { "id": "p2-gadget", "skill": "speaking", "title": "A piece of technology you find useful", "kind": "Part 2", "topic": "Technology", "level": "Band 7", "minutes": 3,
+    "body": { "part": 2, "cue": "Describe a piece of technology (other than a phone) that you find very useful.", "questions": ["What it is", "How often you use it", "What you use it for", "and explain why you find it so useful"] } },
+  { "id": "p2-outdoor-place", "skill": "speaking", "title": "An outdoor place you enjoy", "kind": "Part 2", "topic": "Places", "level": "Band 7", "minutes": 3,
+    "body": { "part": 2, "cue": "Describe an outdoor place where you like to spend time.", "questions": ["Where it is", "How often you go there", "What you usually do there", "and explain why you enjoy spending time there"] } },
+  { "id": "p3-consumerism", "skill": "speaking", "title": "Shopping and consumer culture", "kind": "Part 3", "topic": "Economy", "level": "Band 8", "minutes": 5,
+    "body": { "part": 3, "questions": ["Why do you think online shopping has become so popular?", "Do you think people buy more than they actually need nowadays?", "What effect does advertising have on people's shopping habits?", "Should governments do more to regulate how companies advertise to children?"] } },
+  { "id": "p3-nature", "skill": "speaking", "title": "The natural environment", "kind": "Part 3", "topic": "Environment", "level": "Band 8", "minutes": 5,
+    "body": { "part": 3, "questions": ["Why do you think some people feel disconnected from nature nowadays?", "What can individuals do to help protect the environment?", "Should companies be fined more heavily for causing pollution?", "Do you think future generations will be more or less concerned about the environment than people today?"] } }
+]
