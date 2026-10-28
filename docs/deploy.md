@@ -23,22 +23,21 @@ Chỉ có các việc dưới đây. Mọi thứ còn lại nằm trong thư m�
 |---|---|---|---|
 | 3 | Tạo database `practice` + tài khoản `practice_app` trong PostgreSQL | PostgreSQL của SaleCheckIn (chỉ **tạo mới**, không đụng `salecheckin` và `tender`) | `DROP DATABASE practice; DROP ROLE practice_app;` |
 | 6 | Thêm một khối vào `deploy/Caddyfile` của SaleCheckIn rồi `caddy reload` | Caddy phục vụ app, website, báo cáo | xoá khối, `caddy reload` |
-| 1 | Thêm bản ghi DNS cho tên miền API | DNS ở Viettel IDC | xoá bản ghi |
 | 9 | Thêm database `practice` vào lịch sao lưu đêm | `/etc/cron.daily/salecheckin-dump` | bỏ dòng thêm |
 
 Container mới bị giới hạn **512 MB RAM, 1 CPU** vì máy chủ 4 CPU / 8 GB còn chạy website, CSDL và báo cáo.
+Không đụng tên miền hay DNS của `namlinh.com`: giao diện dùng tên mặc định của Vercel (`*.vercel.app`), API dùng tên ảo **sslip.io** (xem bước 1).
 
-## 1. Tên miền và DNS
+## 1. Tên miền
 
-Cần hai tên (ví dụ):
+Hai tên, không cái nào cần cấu hình DNS tay:
 
-| Dùng cho | Ví dụ | Bản ghi DNS |
+| Dùng cho | Tên | Vì sao không cần DNS |
 |---|---|---|
-| Giao diện (Vercel) | `ielts.namlinh.com` | Vercel sẽ hiện đúng bản ghi cần tạo ở bước 8 (thường CNAME) |
-| API (máy chủ) | `ielts-api.namlinh.com` | `A` trỏ về `27.71.26.215` |
+| Giao diện (Vercel) | tên mặc định Vercel cấp, dạng `practice-english-xxxx.vercel.app` | Vercel tự gán khi Import project (bước 8) |
+| API (máy chủ) | `ielts-api.27-71-26-215.sslip.io` | sslip.io tự phân giải ra IP ghi ngay trong tên (ở đây là `27.71.26.215`); đổi IP máy chủ thì đổi luôn tên này |
 
-Tạo bản ghi `A` của API **trước** bước 6; chưa có DNS mà bật khối Caddy thì Caddy xin chứng chỉ thất bại liên tục.
-Kiểm: `nslookup ielts-api.namlinh.com` ra `27.71.26.215`.
+Không có bước "tạo bản ghi DNS" nào ở đây. Kiểm tên API phân giải đúng: `nslookup ielts-api.27-71-26-215.sslip.io` phải ra `27.71.26.215`.
 
 ## 2. Đưa mã lên máy chủ (git push qua SSH, như tender-intelligence)
 
@@ -90,7 +89,7 @@ docker compose exec app node -e "fetch('http://127.0.0.1:3000/api/exams/stats').
 
 ## 6. HTTPS cho API (Caddy của SaleCheckIn)
 
-1. Mở `deploy/caddy-api.snippet`, đổi `API.TEN-MIEN-CUA-BAN.com` thành tên miền API thật.
+1. `deploy/caddy-api.snippet` đã dùng sẵn `ielts-api.27-71-26-215.sslip.io`; đổi lại chỉ nếu IP máy chủ khác.
 2. Dán khối đó vào `deploy/Caddyfile` **của kho SaleCheckIn** (cạnh khối `report.namlinhpharma.com`) và **commit vào kho SaleCheckIn**:
    khối dán tay trên máy chủ sẽ mất khi `docker-deploy.sh` của SaleCheckIn chạy `git reset --hard`.
 3. Trên máy chủ, kiểm rồi nạp lại (reload, không restart nên các site khác không gián đoạn):
@@ -101,7 +100,7 @@ docker compose exec caddy caddy validate --config /etc/caddy/Caddyfile
 docker compose exec caddy caddy reload   --config /etc/caddy/Caddyfile
 ```
 
-Kiểm: `curl -s https://ielts-api.namlinh.com/api/exams/stats` ra JSON. Kiểm tiếp các site cũ vẫn lên:
+Kiểm: `curl -s https://ielts-api.27-71-26-215.sslip.io/api/exams/stats` ra JSON. Kiểm tiếp các site cũ vẫn lên (khối này không đụng tới chúng):
 `curl -sI https://app.namlinh.com | head -1`, `curl -sI https://report.namlinhpharma.com | head -1`, `curl -sI https://namlinhpharma.com | head -1`.
 
 ## 7. Tạo hai tài khoản đăng nhập
@@ -110,8 +109,8 @@ Không có đăng ký công khai: chỉ hai tài khoản **`zitconlonton`** và 
 database chỉ lưu bản băm. Chạy từ máy phát triển, trỏ vào API trên máy chủ (cần `ADMIN_TOKEN` ở bước 4):
 
 ```bash
-npm run user:create -- zitconlonton --url https://ielts-api.namlinh.com --token <ADMIN_TOKEN>
-npm run user:create -- yinhocielts  --url https://ielts-api.namlinh.com --token <ADMIN_TOKEN>
+npm run user:create -- zitconlonton --url https://ielts-api.27-71-26-215.sslip.io --token <ADMIN_TOKEN>
+npm run user:create -- yinhocielts  --url https://ielts-api.27-71-26-215.sslip.io --token <ADMIN_TOKEN>
 ```
 
 Mỗi lệnh in "Đã tạo tài khoản ...". Chạy lại với tên đã có là **đặt lại mật khẩu** (và đăng xuất các phiên đang mở). Việc này chỉ ghi vào bảng `users` của database `practice`.
@@ -119,9 +118,9 @@ Mỗi lệnh in "Đã tạo tài khoản ...". Chạy lại với tên đã có 
 ## 8a. Thử API từ ngoài
 
 ```bash
-curl -s https://ielts-api.namlinh.com/api/exams/stats                                 # công khai: ra JSON
-curl -s -w ' [%{http_code}]\n' "https://ielts-api.namlinh.com/api/exams?skill=reading"  # chưa đăng nhập: phải [401]
-curl -s -w ' [%{http_code}]\n' -X POST https://ielts-api.namlinh.com/api/exams/import -H 'content-type: application/json' -d '[]'   # phải [401]
+curl -s https://ielts-api.27-71-26-215.sslip.io/api/exams/stats                                 # công khai: ra JSON
+curl -s -w ' [%{http_code}]\n' "https://ielts-api.27-71-26-215.sslip.io/api/exams?skill=reading"  # chưa đăng nhập: phải [401]
+curl -s -w ' [%{http_code}]\n' -X POST https://ielts-api.27-71-26-215.sslip.io/api/exams/import -H 'content-type: application/json' -d '[]'   # phải [401]
 ```
 
 Hai dòng sau phải trả **401**: đề và API ghi đang đòi đăng nhập/token. Nếu không phải 401, dừng lại và đừng tiếp tục.
@@ -129,11 +128,11 @@ Hai dòng sau phải trả **401**: đề và API ghi đang đòi đăng nhập/
 ## 8. Vercel (giao diện)
 
 1. Đẩy mã lên một kho GitHub (riêng tư) để Vercel đọc, rồi **Import** kho đó trong Vercel.
-2. Settings → Environment Variables: **`API_ORIGIN=https://ielts-api.namlinh.com`** (Production và Preview). Phải đặt **trước** lần dựng: rewrite được cố định lúc build; đổi sau thì Redeploy.
+2. Settings → Environment Variables: **`API_ORIGIN=https://ielts-api.27-71-26-215.sslip.io`** (Production và Preview). Phải đặt **trước** lần dựng: rewrite được cố định lúc build; đổi sau thì Redeploy.
 3. **Không** đặt `DATABASE_URL`, `ANTHROPIC_API_KEY`, `ADMIN_TOKEN` ở Vercel.
-4. Settings → Domains: thêm `ielts.namlinh.com`, tạo bản ghi DNS theo hướng dẫn Vercel hiện ra.
+4. Không cần mục Domains: dùng luôn tên mặc định Vercel cấp sau khi dựng xong (dạng `practice-english-xxxx.vercel.app`), không đụng `namlinh.com`.
 
-Kiểm: mở `https://ielts.namlinh.com`, bấm Đăng nhập bằng một trong hai tài khoản, vào Reading, làm và nộp một đề: kết quả đến từ máy chủ và buổi vừa làm hiện trong Tổng quan.
+Kiểm: mở tên `*.vercel.app` đó, bấm Đăng nhập bằng một trong hai tài khoản, vào Reading, làm và nộp một đề: kết quả đến từ máy chủ và buổi vừa làm hiện trong Tổng quan.
 Đăng xuất rồi đăng nhập lại (hoặc đổi trình duyệt): lịch sử còn nguyên. Trang chủ phải hiện "62 đề".
 
 **Cookie đăng nhập đi qua Vercel**: trình duyệt chỉ nói chuyện với tên miền Vercel, Vercel chuyển `/api/*` về máy chủ. Cookie phiên được đặt cờ `Secure` nhờ header `X-Forwarded-Proto`
@@ -163,7 +162,7 @@ Thêm đề không cần dựng lại: `POST /api/exams/import` kèm token (xem 
 
 - **Bản mới hỏng**: script in sẵn lệnh quay về `practice-english:truoc`.
 - **Gỡ hẳn**: xoá khối Caddy rồi `caddy reload`; `cd /srv/practice-english && docker compose down` (**không** `-v`);
-  `DROP DATABASE practice; DROP ROLE practice_app;` bằng tài khoản quản trị PostgreSQL; xoá bản ghi DNS và dự án Vercel.
+  `DROP DATABASE practice; DROP ROLE practice_app;` bằng tài khoản quản trị PostgreSQL; xoá dự án Vercel (không có bản ghi DNS nào để xoá).
 
 ## Lưu ý
 
