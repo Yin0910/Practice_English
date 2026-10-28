@@ -99,7 +99,7 @@ export default function VocabularyPage() {
       />
 
       {tab === 'review' && (
-        <section className="card" style={{ maxWidth: 720 }}>
+        <section className="card" style={{ maxWidth: 720, margin: '0 auto' }}>
           {!ready || run === null ? (
             <p className="empty">Đang tải…</p>
           ) : finished ? (
