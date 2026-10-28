@@ -105,51 +105,34 @@ npm run db:import -- --url http://localhost:3000 --token <ADMIN_TOKEN> db/seed/m
 Trình duyệt ──► Vercel (tên miền, giao diện)
                   │  /api/*  chuyển tiếp (rewrite)
                   ▼
-              Máy chủ:  Caddy (HTTPS) ──► app (API đề, chấm bài, chấm AI) ──► PostgreSQL
+              Máy chủ:  Caddy (HTTPS) ──► app (API đề, chấm bài, chấm AI) ──► SQLite (volume riêng)
 ```
 
-Cùng một mã nguồn chạy hai kiểu. **Trên máy chủ** là bản đầy đủ (API + database + AI). **Trên Vercel** chỉ là giao diện: đặt `API_ORIGIN` thì
-mọi `/api/*` được chuyển tới máy chủ. Trình duyệt vẫn gọi cùng một tên miền nên không vướng CORS, và `ANTHROPIC_API_KEY`, `ADMIN_TOKEN`,
-mật khẩu database **không bao giờ nằm ở Vercel**.
+Cùng một mã nguồn chạy hai kiểu. **Trên máy chủ** là bản đầy đủ (API + database + AI), dữ liệu nằm trong một file SQLite ở volume Docker
+riêng của chính nó — không cần PostgreSQL, không cần tài khoản database nào. **Trên Vercel** chỉ là giao diện: đặt `API_ORIGIN` thì mọi
+`/api/*` được chuyển tới máy chủ. Trình duyệt vẫn gọi cùng một tên miền nên không vướng CORS, và `ANTHROPIC_API_KEY`, `ADMIN_TOKEN` **không
+bao giờ nằm ở Vercel**.
 
-### 1. Trên máy chủ (đã có Docker, như máy chủ của SaleCheckIn)
+Quy trình đủ, kèm các lệnh thật để chạy chung máy chủ với SaleCheckIn (tên miền, SSH, Caddy, sao lưu...): **[docs/deploy.md](docs/deploy.md)**.
+Tóm tắt nhanh để tự host nơi khác:
 
 ```bash
 git clone <repo> practice-english && cd practice-english
-cp .env.example .env        # điền POSTGRES_PASSWORD, ADMIN_TOKEN, ANTHROPIC_API_KEY
+cp .env.example .env        # điền ADMIN_TOKEN, ANTHROPIC_API_KEY — không có mục database nào phải điền
 docker compose up -d --build
 docker compose logs -f app  # lần đầu tự nạp db/seed/*.json vào database trống
 ```
 
-Ứng dụng nghe ở `127.0.0.1:3101` (đổi bằng `APP_PORT`). Stack này có project, volume và cổng riêng, **không dùng chung gì** với SaleCheckIn nên không ảnh hưởng dữ liệu của nó.
-
-### 2. HTTPS cho API
-
-Thêm một khối vào Caddy đang chạy (hoặc nginx), với tên miền phụ trỏ DNS về máy chủ, ví dụ `api.ten-mien.com`:
-
-```
-api.ten-mien.com {
-	encode zstd gzip
-	reverse_proxy 127.0.0.1:3101
-}
-```
-
-Nếu Caddy chạy trong container (như ở SaleCheckIn) thì `127.0.0.1` là chính container Caddy: dùng `host.docker.internal:3101` kèm `extra_hosts: ["host.docker.internal:host-gateway"]`
-cho service caddy, hoặc nối Caddy vào mạng của stack này. Đây là việc sửa cấu hình máy chủ chung, nên làm có chủ đích.
-
-### 3. Trên Vercel
-
-Import repo này, rồi đặt biến môi trường **`API_ORIGIN=https://api.ten-mien.com`** (đặt trước khi dựng: rewrite được cố định lúc build). Gắn tên miền chính vào project Vercel.
-Không đặt `DATABASE_URL`, `ANTHROPIC_API_KEY`, `ADMIN_TOKEN` ở Vercel.
+`compose.yaml` mặc định nối vào mạng Docker `salecheckin_default` để dùng chung Caddy của SaleCheckIn làm HTTPS; chạy độc lập nơi khác thì
+xoá khối `networks` đó và tự đặt `ports` hoặc Caddy/nginx riêng trỏ vào cổng 3000 của container.
 
 ### Lưu ý vận hành
 
-- **Giới hạn chấm AI**: mỗi IP tối đa `AI_RATE_LIMIT_PER_HOUR` lượt mỗi giờ và cả hệ thống tối đa `AI_RATE_LIMIT_PER_DAY` lượt mỗi ngày. Khi đi qua Vercel,
-  Caddy mặc định chỉ thấy địa chỉ của Vercel, nên giới hạn theo IP gần như thành giới hạn chung; lớp theo ngày mới là lớp bảo vệ chắc chắn. Muốn có IP thật, cấu hình `trusted_proxies` trong Caddy.
-- **Sao lưu**: `docker compose exec db pg_dump -U practice practice > practice.sql`. Đừng bao giờ `docker compose down -v`.
+- **Giới hạn chấm AI**: mỗi tài khoản tối đa `AI_RATE_LIMIT_PER_HOUR` lượt mỗi giờ và cả hệ thống tối đa `AI_RATE_LIMIT_PER_DAY` lượt mỗi ngày (chấm AI cần đăng nhập).
+- **Sao lưu**: dữ liệu nằm trong volume Docker `practice_data`; cách sao lưu file SQLite an toàn khi đang chạy nằm trong docs/deploy.md, bước 9. Đừng bao giờ `docker compose down -v`.
 - **Đổi nội dung đề** không cần dựng lại: dùng `POST /api/exams/import` (hoặc `npm run db:import`).
-- **Neon**: bộ đọc/ghi dùng PostgreSQL chuẩn, nên đặt `DATABASE_URL` là chuỗi kết nối Neon cũng chạy. Chưa thiết lập và chưa thử chế độ chạy toàn bộ trên Vercel (không có máy chủ).
-- **Đã kiểm**: SQLite thật, PostgreSQL qua pg-mem (giả lập), adapter Postgres qua pool giả (BEGIN/COMMIT/ROLLBACK), `next build`. **Chưa kiểm** trên PostgreSQL thật và trên Docker, vì máy phát triển chưa có.
+- **PostgreSQL / Neon vẫn dùng được** nếu muốn: đặt `DATABASE_URL`, bộ đọc/ghi hỗ trợ cả hai. Mặc định trên máy chủ dùng SQLite vì đơn giản và tách biệt hoàn toàn.
+- **Đã kiểm**: SQLite thật, PostgreSQL qua pg-mem (giả lập), adapter Postgres qua pool giả (BEGIN/COMMIT/ROLLBACK), `next build`. **Chưa kiểm** trên Docker thật, vì máy phát triển chưa có.
 
 ## Cấu trúc
 

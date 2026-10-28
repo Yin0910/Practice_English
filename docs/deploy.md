@@ -10,23 +10,25 @@ Trình duyệt ──► Vercel  (tên miền giao diện: chỉ có giao diện
         Máy chủ 27.71.26.215 (dùng chung với SaleCheckIn)
           Caddy của SaleCheckIn (HTTPS) ──► practice-app (API đề, chấm bài, chấm AI)
                                                 │
-                                                └─► PostgreSQL của SaleCheckIn, database `practice` (tài khoản `practice_app`)
+                                                └─► SQLite trong volume Docker `practice_data`
+                                                     (RIÊNG — không chạm CSDL của SaleCheckIn)
 ```
 
-Cách làm giống tender-intelligence đang chạy cùng máy chủ: không dựng PostgreSQL riêng, đứng chung mạng Docker `salecheckin_default`, nhận mã bằng `git push` qua SSH.
+Nhận mã bằng `git push` qua SSH, như tender-intelligence. Khác tender-intelligence ở chỗ **không dùng PostgreSQL của SaleCheckIn**:
+ứng dụng này ít người dùng và ghi nhẹ nên SQLite trong volume riêng là đủ. Container chỉ đứng chung mạng Docker `salecheckin_default`
+để Caddy của SaleCheckIn *định tuyến* tới nó bằng bí danh `practice-app` — không phải để chung CSDL.
 
 ## Việc nào chạm vào hệ thống đang chạy thật
 
-Chỉ có các việc dưới đây. Mọi thứ còn lại nằm trong thư mục `/srv/practice-english` mới và container mới.
+Chỉ có các việc dưới đây. Mọi thứ còn lại nằm trong thư mục `/srv/practice-english` mới, container mới và volume mới.
 
 | # | Việc | Chạm vào | Hoàn tác |
 |---|---|---|---|
-| 3 | Tạo database `practice` + tài khoản `practice_app` trong PostgreSQL | PostgreSQL của SaleCheckIn (chỉ **tạo mới**, không đụng `salecheckin` và `tender`) | `DROP DATABASE practice; DROP ROLE practice_app;` |
-| 6 | Thêm một khối vào `deploy/Caddyfile` của SaleCheckIn rồi `caddy reload` | Caddy phục vụ app, website, báo cáo | xoá khối, `caddy reload` |
-| 9 | Thêm database `practice` vào lịch sao lưu đêm | `/etc/cron.daily/salecheckin-dump` | bỏ dòng thêm |
+| 5 | Thêm một khối vào `deploy/Caddyfile` của SaleCheckIn rồi `caddy reload` | Caddy phục vụ app, website, báo cáo | xoá khối, `caddy reload` |
 
-Container mới bị giới hạn **512 MB RAM, 1 CPU** vì máy chủ 4 CPU / 8 GB còn chạy website, CSDL và báo cáo.
-Không đụng tên miền hay DNS của `namlinh.com`: giao diện dùng tên mặc định của Vercel (`*.vercel.app`), API dùng tên ảo **sslip.io** (xem bước 1).
+Đúng một việc chạm vào hạ tầng dùng chung. Không tạo database hay role nào trên PostgreSQL của SaleCheckIn, không đụng lịch sao lưu của nó,
+không có bản ghi DNS nào phải thêm hay xoá (xem bước 1). Container mới bị giới hạn **512 MB RAM, 1 CPU** vì máy chủ 4 CPU / 8 GB còn chạy
+website, CSDL và báo cáo của dự án khác.
 
 ## 1. Tên miền
 
@@ -52,34 +54,22 @@ git push ssh://root@27.71.26.215/srv/practice-english main:main
 
 Kiểm: `ssh root@27.71.26.215 'ls /srv/practice-english'` thấy `compose.yaml`, `Dockerfile`, `deploy/`, `db/seed/`.
 
-## 3. Tạo database và tài khoản riêng (một lần)
-
-Trên máy chủ:
-
-```bash
-PW=$(openssl rand -hex 24); echo "$PW"      # GHI LẠI: là PG_PASSWORD ở bước 4
-docker compose -f /srv/salecheckin/compose.yaml exec -T db \
-  psql -U salecheckin -d postgres -v ON_ERROR_STOP=1 -v pw="'$PW'" < /srv/practice-english/deploy/provision-db.sql
-```
-
-Kiểm: in ra `CREATE ROLE`, `CREATE DATABASE`, `REVOKE`. Chạy lại lần hai sẽ báo "already exists": đó là bình thường và không làm hỏng gì.
-
-## 4. Cấu hình `.env` trên máy chủ
+## 3. Cấu hình `.env` trên máy chủ
 
 ```bash
 cd /srv/practice-english && cp .env.example .env && nano .env
 ```
 
-Điền: `PG_PASSWORD` (từ bước 3), `ADMIN_TOKEN` (`openssl rand -hex 24`), `ANTHROPIC_API_KEY` (**tự dán vào file này**, không gửi qua chat/tin nhắn).
-Để nguyên `PG_USER=practice_app`, `PG_DATABASE=practice`, `PG_HOST=db`, `PG_NETWORK=salecheckin_default`. File `.env` không lên git.
+Điền: `ADMIN_TOKEN` (`openssl rand -hex 24`), `ANTHROPIC_API_KEY` (**tự dán vào file này**, không gửi qua chat/tin nhắn). Không có mục
+database nào phải điền — SQLite tự tạo trong volume. File `.env` không lên git.
 
-## 5. Dựng và chạy
+## 4. Dựng và chạy
 
 ```bash
 cd /srv/practice-english && bash deploy/docker-deploy.sh
 ```
 
-Lần đầu, ứng dụng thấy database `practice` trống nên tự nạp `db/seed/*.json` (62 đề). Kiểm:
+Lần đầu, ứng dụng thấy volume `practice_data` trống nên tự tạo `exams.db` và nạp `db/seed/*.json` (62 đề). Kiểm:
 
 ```bash
 docker compose logs --tail 30 app                      # không có lỗi "Không mở được database"
@@ -87,7 +77,7 @@ docker compose exec app node -e "fetch('http://127.0.0.1:3000/api/exams/stats').
 # mong đợi: total 62, bySkill {reading 4, listening 4, writing 24, speaking 30}
 ```
 
-## 6. HTTPS cho API (Caddy của SaleCheckIn)
+## 5. HTTPS cho API (Caddy của SaleCheckIn)
 
 1. `deploy/caddy-api.snippet` đã dùng sẵn `ielts-api.27-71-26-215.sslip.io`; đổi lại chỉ nếu IP máy chủ khác.
 2. Dán khối đó vào `deploy/Caddyfile` **của kho SaleCheckIn** (cạnh khối `report.namlinhpharma.com`) và **commit vào kho SaleCheckIn**:
@@ -103,19 +93,19 @@ docker compose exec caddy caddy reload   --config /etc/caddy/Caddyfile
 Kiểm: `curl -s https://ielts-api.27-71-26-215.sslip.io/api/exams/stats` ra JSON. Kiểm tiếp các site cũ vẫn lên (khối này không đụng tới chúng):
 `curl -sI https://app.namlinh.com | head -1`, `curl -sI https://report.namlinhpharma.com | head -1`, `curl -sI https://namlinhpharma.com | head -1`.
 
-## 7. Tạo hai tài khoản đăng nhập
+## 6. Tạo hai tài khoản đăng nhập
 
 Không có đăng ký công khai: chỉ hai tài khoản **`zitconlonton`** và **`yinhocielts`**, tạo bằng script. Mật khẩu được **hỏi ẩn khi chạy** (gõ hai lần), không nằm trong lệnh, trong git hay trong file nào;
-database chỉ lưu bản băm. Chạy từ máy phát triển, trỏ vào API trên máy chủ (cần `ADMIN_TOKEN` ở bước 4):
+database chỉ lưu bản băm. Chạy từ máy phát triển, trỏ vào API trên máy chủ (cần `ADMIN_TOKEN` ở bước 3):
 
 ```bash
 npm run user:create -- zitconlonton --url https://ielts-api.27-71-26-215.sslip.io --token <ADMIN_TOKEN>
 npm run user:create -- yinhocielts  --url https://ielts-api.27-71-26-215.sslip.io --token <ADMIN_TOKEN>
 ```
 
-Mỗi lệnh in "Đã tạo tài khoản ...". Chạy lại với tên đã có là **đặt lại mật khẩu** (và đăng xuất các phiên đang mở). Việc này chỉ ghi vào bảng `users` của database `practice`.
+Mỗi lệnh in "Đã tạo tài khoản ...". Chạy lại với tên đã có là **đặt lại mật khẩu** (và đăng xuất các phiên đang mở). Việc này chỉ ghi vào volume `practice_data`.
 
-## 8a. Thử API từ ngoài
+## 7. Thử API từ ngoài
 
 ```bash
 curl -s https://ielts-api.27-71-26-215.sslip.io/api/exams/stats                                 # công khai: ra JSON
@@ -129,7 +119,7 @@ Hai dòng sau phải trả **401**: đề và API ghi đang đòi đăng nhập/
 
 1. Đẩy mã lên một kho GitHub (riêng tư) để Vercel đọc, rồi **Import** kho đó trong Vercel.
 2. Settings → Environment Variables: **`API_ORIGIN=https://ielts-api.27-71-26-215.sslip.io`** (Production và Preview). Phải đặt **trước** lần dựng: rewrite được cố định lúc build; đổi sau thì Redeploy.
-3. **Không** đặt `DATABASE_URL`, `ANTHROPIC_API_KEY`, `ADMIN_TOKEN` ở Vercel.
+3. **Không** đặt `ANTHROPIC_API_KEY`, `ADMIN_TOKEN` ở Vercel (không có database nào để đặt `DATABASE_URL`).
 4. Không cần mục Domains: dùng luôn tên mặc định Vercel cấp sau khi dựng xong (dạng `practice-english-xxxx.vercel.app`), không đụng `namlinh.com`.
 
 Kiểm: mở tên `*.vercel.app` đó, bấm Đăng nhập bằng một trong hai tài khoản, vào Reading, làm và nộp một đề: kết quả đến từ máy chủ và buổi vừa làm hiện trong Tổng quan.
@@ -140,14 +130,20 @@ Kiểm: mở tên `*.vercel.app` đó, bấm Đăng nhập bằng một trong ha
 
 ## 9. Sao lưu
 
-Lịch dump đêm của SaleCheckIn chỉ dump database `salecheckin`. Xem file đó trên máy chủ (`cat /etc/cron.daily/salecheckin-dump`) rồi thêm cho `practice`, theo cùng kiểu, ví dụ:
+Dữ liệu (tài khoản, lịch sử học, tiến độ từ vựng, đề) nằm trong volume Docker `practice_data`, **tách hẳn khỏi** lịch dump đêm của
+SaleCheckIn (lịch đó chỉ dump database `salecheckin` của nó, không liên quan). Sao lưu file SQLite bằng lệnh `.backup` của chính nó (an toàn
+ngay cả khi ứng dụng đang ghi, không cần dừng container):
 
 ```bash
-docker compose -f /srv/salecheckin/compose.yaml exec -T db pg_dump -U salecheckin -Fc practice > /var/backups/practice-$(date +%F).dump
+mkdir -p /var/backups/practice-english
+docker compose -f /srv/practice-english/compose.yaml exec -T app \
+  node -e "require('node:sqlite').DatabaseSync.prototype.constructor; const {DatabaseSync}=require('node:sqlite'); new DatabaseSync('/app/data/exams.db').exec(\"VACUUM INTO '/app/data/backup-$(date +%F).db'\")"
+docker cp practice-english-app-1:/app/data/backup-$(date +%F).db /var/backups/practice-english/
+docker compose -f /srv/practice-english/compose.yaml exec -T app rm /app/data/backup-$(date +%F).db
 ```
 
-Đề tự soạn nằm trong `db/seed/*.json` trong git nên luôn dựng lại được; **đề nhập thêm qua API thì không**, nên giữ file JSON gốc trong git hoặc dựa vào bản dump này.
-**Tài khoản và lịch sử học của từng người chỉ có trong database này**, nên bản dump là thứ duy nhất giữ được chúng.
+Đặt làm việc hằng ngày bằng `cron` (ví dụ `/etc/cron.daily/practice-english-backup`, tương tự cách SaleCheckIn đã làm cho chính nó) và dọn bản cũ sau một thời gian.
+Đề tự soạn nằm trong `db/seed/*.json` trong git nên luôn dựng lại được; **đề nhập thêm qua API, tài khoản và lịch sử học thì chỉ có trong volume này**, nên bản sao lưu ở trên là chỗ duy nhất giữ được chúng.
 
 ## 10. Cập nhật về sau
 
@@ -161,13 +157,13 @@ Thêm đề không cần dựng lại: `POST /api/exams/import` kèm token (xem 
 ## 11. Quay lui và gỡ bỏ
 
 - **Bản mới hỏng**: script in sẵn lệnh quay về `practice-english:truoc`.
-- **Gỡ hẳn**: xoá khối Caddy rồi `caddy reload`; `cd /srv/practice-english && docker compose down` (**không** `-v`);
-  `DROP DATABASE practice; DROP ROLE practice_app;` bằng tài khoản quản trị PostgreSQL; xoá dự án Vercel (không có bản ghi DNS nào để xoá).
+- **Gỡ hẳn**: xoá khối Caddy rồi `caddy reload`; `cd /srv/practice-english && docker compose down` (**không** `-v`, trừ khi thật sự muốn xoá
+  sạch tài khoản và lịch sử học); xoá dự án Vercel (không có bản ghi DNS nào để xoá).
 
 ## Lưu ý
 
 - **Chấm AI chỉ dành cho người đã đăng nhập**, giới hạn theo từng tài khoản (`AI_RATE_LIMIT_PER_HOUR`) và cả hệ thống (`AI_RATE_LIMIT_PER_DAY`). Đoán mật khẩu bị chặn tạm sau nhiều lần sai (theo IP và theo tên);
   khi đi qua Vercel, Caddy chỉ thấy IP của Vercel nên lớp theo tên mới là lớp chắc chắn.
-- **Sao lưu có cả tài khoản và lịch sử học**: chúng nằm trong cùng database `practice` (bước 9).
+- **Dữ liệu tách hoàn toàn khỏi SaleCheckIn**: volume `practice_data` riêng, không role hay database nào trên PostgreSQL của SaleCheckIn, không chung lịch sao lưu.
 - **Mật khẩu từng gõ vào khung chat** thì nằm trong lịch sử cuộc trò chuyện đó; nên đổi bằng chính lệnh `user:create` sau khi hệ thống chạy ổn.
-- **Chưa kiểm** trên PostgreSQL thật và trên Docker: lần chạy đầu trên máy chủ chính là lần kiểm đầu tiên, nên theo dõi `docker compose logs -f app`.
+- **Chưa kiểm trên Docker thật**: lần chạy đầu trên máy chủ chính là lần kiểm đầu tiên, nên theo dõi `docker compose logs -f app`.

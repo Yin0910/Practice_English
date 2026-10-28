@@ -1,5 +1,5 @@
 # Image của Band 8.0 Practice: giao diện + API + chấm AI trong MỘT ứng dụng Next.js.
-# Chạy trên máy chủ cùng PostgreSQL (compose.yaml). Image chỉ chứa mã: database, .env nằm ngoài.
+# Database là SQLite trong volume riêng (compose.yaml) — image chỉ chứa mã, không chứa dữ liệu hay .env.
 #
 #   docker compose up -d --build        (quy trình đủ: README, mục "Triển khai")
 

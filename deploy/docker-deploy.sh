@@ -16,10 +16,9 @@ canh() { printf '\n\033[1;36m==> %s\033[0m\n' "$*"; }
 loi()  { printf '\033[1;31m%s\033[0m\n' "$*" >&2; exit 1; }
 doc_env() { sed -n "s/^$1=//p" .env | tail -n 1 | tr -d "\"' \r"; }
 
-[[ -f .env ]] || loi "Chưa có ${THU_MUC}/.env — chép từ .env.example rồi điền PG_PASSWORD (docs/deploy.md, bước 4)."
-[[ -n "$(doc_env PG_PASSWORD)" ]] || loi "PG_PASSWORD trong .env đang trống."
+[[ -f .env ]] || loi "Chưa có ${THU_MUC}/.env — chép từ .env.example rồi điền ADMIN_TOKEN (docs/deploy.md, bước 3)."
 
-MANG=$(doc_env PG_NETWORK); MANG=${MANG:-salecheckin_default}
+MANG=$(doc_env PRACTICE_NETWORK); MANG=${MANG:-salecheckin_default}
 
 canh "1. Kiểm tra điều kiện"
 docker network inspect "$MANG" >/dev/null 2>&1 \

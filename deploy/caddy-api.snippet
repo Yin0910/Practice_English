@@ -8,7 +8,8 @@
 #   docker compose exec caddy caddy validate --config /etc/caddy/Caddyfile
 #   docker compose exec caddy caddy reload   --config /etc/caddy/Caddyfile      # reload, KHÔNG restart: các site khác không gián đoạn
 #
-# Caddy phải nối được tới `practice-app`: cả hai cùng mạng salecheckin_default (compose.yaml của dự án này đã nối sẵn).
+# Caddy phải nối được tới `practice-app`: cả hai cùng mạng salecheckin_default (compose.yaml của dự án này đã nối sẵn,
+# chỉ để định tuyến — ứng dụng dùng SQLite riêng, không đụng CSDL của SaleCheckIn).
 
 ielts-api.27-71-26-215.sslip.io {
 	encode zstd gzip

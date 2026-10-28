@@ -1,15 +1,18 @@
-# Band 8.0 Practice trên máy chủ dùng chung với SaleCheckIn.
+# Band 8.0 Practice trên máy chủ dùng chung với SaleCheckIn — nhưng dữ liệu HOÀN TOÀN RIÊNG.
 #
-# Làm đúng cách tender-intelligence đang chạy cùng máy chủ: KHÔNG dựng PostgreSQL riêng (máy chủ 4 CPU / 8 GB
-# còn chạy website và CSDL của dự án khác). Ứng dụng đứng chung mạng Docker `salecheckin_default` và nối
-# PostgreSQL của SaleCheckIn ở tên `db`, bằng database `practice` và tài khoản `practice_app` RIÊNG
-# (tạo một lần: deploy/provision-db.sql). Caddy của SaleCheckIn nhận HTTPS rồi chuyển vào bí danh `practice-app`.
+# Không dùng PostgreSQL của SaleCheckIn: ứng dụng này ít người dùng và ghi nhẹ (lịch sử học, tiến độ
+# từ vựng), nên một file SQLite trong volume riêng của chính nó là đủ — không tạo role, không tạo
+# database, không đụng gì tới CSDL hay bản sao lưu của SaleCheckIn. Container chỉ đứng CHUNG MẠNG
+# `salecheckin_default` để Caddy của SaleCheckIn tìm thấy nó qua bí danh `practice-app` và chuyển
+# HTTPS vào (cổng 80/443 trên máy đã do Caddy của SaleCheckIn giữ) — giống hệt cách dịch vụ `dash`
+# của tender-intelligence đang làm, không phải để chung CSDL.
 #
 #   bash deploy/docker-deploy.sh         # dựng và phát hành (quy trình đủ: docs/deploy.md)
 #   docker compose ps
 #   docker compose logs -f app
 #
-# `docker compose down` (không -v) an toàn. Không có volume nào ở đây: dữ liệu nằm trong database `practice`.
+# `docker compose down` (không -v) an toàn. `docker compose down -v` sẽ xoá volume `practice_data`
+# — tức là xoá sạch tài khoản và lịch sử học; chỉ làm khi thật sự muốn xoá hết.
 
 name: practice-english
 
@@ -21,14 +24,15 @@ services:
     restart: unless-stopped
     env_file: .env
     environment:
-      # Mật khẩu chỉ gồm chữ và số (openssl rand -hex 24) để ghép vào URL không cần mã hoá ký tự.
-      DATABASE_URL: postgresql://${PG_USER:-practice_app}:${PG_PASSWORD:?Thieu PG_PASSWORD trong .env}@${PG_HOST:-db}:5432/${PG_DATABASE:-practice}
+      DATABASE_FILE: /app/data/exams.db
+    volumes:
+      - practice_data:/app/data
     # Không mở cổng ra ngoài máy chủ: chỉ Caddy (cùng mạng salecheckin_default) gọi tới được.
     expose:
       - "3000"
     networks:
       default: {}
-      csdl:
+      lan:
         aliases:
           - practice-app
     healthcheck:
@@ -42,7 +46,12 @@ services:
     cpus: ${APP_CPUS:-1}
 
 networks:
-  # Mạng của SaleCheckIn, nơi PostgreSQL mang tên `db`. Phải có sẵn (SaleCheckIn đang chạy) trước khi `up`.
-  csdl:
-    name: ${PG_NETWORK:-salecheckin_default}
+  # Mạng của SaleCheckIn — chỉ để Caddy của nó định tuyến tới đây bằng tên `practice-app`.
+  # Phải có sẵn (SaleCheckIn đang chạy) trước khi `up`. KHÔNG mang CSDL nào qua mạng này.
+  lan:
+    name: ${PRACTICE_NETWORK:-salecheckin_default}
     external: true
+
+volumes:
+  # Toàn bộ dữ liệu của app (database SQLite): tài khoản, đề, lịch sử học, tiến độ từ vựng.
+  practice_data:
