@@ -1,5 +1,11 @@
 # Khối Caddy cho API của Band 8.0 Practice. DÁN vào deploy/Caddyfile của SaleCheckIn (cạnh khối report.namlinhpharma.com),
-# và COMMIT vào kho SaleCheckIn: khối dán tay trên máy chủ sẽ mất khi docker-deploy.sh chạy `git reset --hard`.
+# và COMMIT vào kho SaleCheckIn: khối dán tay trên máy chủ sẽ mất khi docker-deploy.sh chạy "git reset --hard".
+#
+# CẢNH BÁO — đừng dùng dấu huyền ngược (phím dưới phím Esc, cạnh phím 1) trong bất kỳ dòng chú thích nào của file
+# này, kể cả sau dấu #: Caddyfile dùng ký tự đó để trích dẫn token, và bộ phân tích của Caddy xử lý nó TRƯỚC KHI
+# nhận ra đó là dòng chú thích — một ký tự lạc sẽ khiến Caddy ÂM THẦM bỏ qua các site block phía sau (không báo
+# lỗi gì, "caddy validate" vẫn nói "Valid configuration"). Đã kiểm chứng thực tế trên máy chủ ngày 28/10/2026.
+# Dùng dấu nháy đơn '...' hoặc nháy kép "..." thay thế.
 #
 # Tên miền: dùng sslip.io (tên ảo tự phân giải ra IP ghi ngay trong tên, không cần bản ghi DNS, không đụng namlinh.com) —
 # ví dụ "ielts-api.27-71-26-215.sslip.io" cho máy chủ 27.71.26.215. Đổi IP thì đổi luôn tên này.
@@ -8,7 +14,7 @@
 #   docker compose exec caddy caddy validate --config /etc/caddy/Caddyfile
 #   docker compose exec caddy caddy reload   --config /etc/caddy/Caddyfile      # reload, KHÔNG restart: các site khác không gián đoạn
 #
-# Caddy phải nối được tới `practice-app`: cả hai cùng mạng salecheckin_default (compose.yaml của dự án này đã nối sẵn,
+# Caddy phải nối được tới 'practice-app': cả hai cùng mạng salecheckin_default (compose.yaml của dự án này đã nối sẵn,
 # chỉ để định tuyến — ứng dụng dùng SQLite riêng, không đụng CSDL của SaleCheckIn).
 
 ielts-api.27-71-26-215.sslip.io {
