@@ -38,6 +38,11 @@ COPY --from=build --chown=node:node /app/.next/static ./.next/static
 COPY --from=build --chown=node:node /app/db ./db
 COPY --from=build --chown=node:node /app/scripts ./scripts
 
+# Thư mục cho database SQLite (compose.yaml gắn volume vào đây). Tạo sẵn và cho user `node` làm chủ:
+# volume Docker đặt ở đây lần đầu sẽ kế thừa đúng quyền này, nếu không container chạy bằng `node`
+# (không phải root, xem USER bên dưới) sẽ không ghi được và sqlite báo "unable to open database file".
+RUN mkdir -p /app/data && chown node:node /app/data
+
 USER node
 EXPOSE 3000
 CMD ["node", "server.js"]
